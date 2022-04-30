@@ -6,8 +6,8 @@
       <class name="Delta_login.DeltaActions">
         <methods>
           <include name="quit"/>
-          <include name="f"/>
           <include name="beforeTest"/>
+          <include name="InsideShellSequence"/>
         </methods>
       </class> <!-- Delta_login.DeltaActions -->
     </classes>
