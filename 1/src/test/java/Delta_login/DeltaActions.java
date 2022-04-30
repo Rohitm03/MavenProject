@@ -27,8 +27,8 @@ public class DeltaActions {
 			    executor.executeScript("arguments[0].click();", element);
 	  }
 
-  @Test
-  public void f() throws InterruptedException {
+  @Test(priority=1)
+  public void GetShellSequence() throws InterruptedException {
 		  Thread.sleep(3000);
 		  driver.get("https://stag1-delta.leadschool.in/dashboard");
 		  Thread.sleep(3000);
@@ -42,13 +42,19 @@ public class DeltaActions {
 		    driver.findElement(By.id("academicYear")).click();
 		    new Select(driver.findElement(By.id("academicYear"))).selectByVisibleText("2022-2023");
 		    driver.findElement(By.xpath("//div[@id='app']/div[3]/div/div/div[3]/div/div[2]/form/div[2]/button")).click();
-
+  }
+  @Test(priority=2)
+  public void InsideShellSequence() throws InterruptedException {
+	  Thread.sleep(3000);
+	   driver.findElement(By.xpath("/html/body/div[2]/div[3]/div/div[1]/div[3]/div[3]/div[3]/div[1]/div[2]/div[2]/div/ul/li[1]/a[5]")).click();
+	   Thread.sleep(3000);
+	   driver.findElement(By.xpath("/html/body/div[2]/div[3]/div/div/div[2]/div/div[3]/div/div/ul/li[2]/a")).click();
   }
   
   @AfterTest
   public void quit() {
-	  driver.close();
-	  driver.quit();
+	  //driver.close();
+	  //driver.quit();
   }
 
 }
