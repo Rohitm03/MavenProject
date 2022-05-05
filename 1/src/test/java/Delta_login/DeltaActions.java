@@ -5,6 +5,7 @@ import org.testng.annotations.Test;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
@@ -76,7 +77,7 @@ public class DeltaActions {
     }
     
 		  @Test(dataProvider = "excelData")
-	 public void GetShellSequence(String Class,String Subject) throws InterruptedException {
+	 public void GetShellSequence(String Class,String Subject,String Board,String AcademicYear) throws InterruptedException {
 	//public void GetShellSequence() throws InterruptedException {
 		Thread.sleep(3000);
 		driver.get("https://stag1-delta.leadschool.in/dashboard");
@@ -101,13 +102,26 @@ public class DeltaActions {
 				"/html/body/div[2]/div[3]/div/div[1]/div[3]/div[3]/div[3]/div[1]/div[2]/div[2]/div/ul/li[1]/a[5]"))
 				.click();
 		Thread.sleep(5000);
-		driver.findElement(By.xpath("/html/body/div[2]/div[3]/div/div/div[2]/div/div[3]/div/div/ul/li[2]/a")).click();
+		driver.findElement(By.linkText("Online")).click();
+	
 	}
 
+	@Test(priority=3)
+	public void OnlineContent() throws InterruptedException{
+		Thread.sleep(5000);
+	      //getting color attribute with getCssValue()
+	      String colr = driver.findElement(By.xpath("//*[@id=\"tab02\"]/div/div/div[1]/div/ul/li[2]/span")).getCssValue("color");
+	      //getting background color attribute with getCssValue()
+	      String bckgclr = driver.findElement(By.xpath("//*[@id=\"tab02\"]/div/div/div[1]/div/ul/li[2]/span")).getCssValue("background-color");
+	      System.out.println(colr);
+	      System.out.println(bckgclr);
+	      	}
+	
+	
 	@AfterTest
 	public void quit() {
-		driver.close();
-	 driver.quit();
+		//driver.close();
+	 //driver.quit();
 	}
 
 }
