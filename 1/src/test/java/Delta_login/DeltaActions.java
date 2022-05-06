@@ -1,8 +1,7 @@
 package Delta_login;
 
 import org.testng.annotations.Test;
-
-
+import org.openqa.selenium.support.Color;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
@@ -17,6 +16,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
@@ -115,13 +115,16 @@ public class DeltaActions {
 	      String bckgclr = driver.findElement(By.xpath("//*[@id=\"tab02\"]/div/div/div[1]/div/ul/li[2]/span")).getCssValue("background-color");
 	      System.out.println(colr);
 	      System.out.println(bckgclr);
+	      String hex = Color.fromString(bckgclr).asHex();
+	      System.out.println(hex);
+Assert.assertTrue(hex.equals("#f6f8f8"), "Test case failed");
 	      	}
 	
 	
 	@AfterTest
 	public void quit() {
-		//driver.close();
-	 //driver.quit();
+		driver.close();
+	 driver.quit();
 	}
 
 }
